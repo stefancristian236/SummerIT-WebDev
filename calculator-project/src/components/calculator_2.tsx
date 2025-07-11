@@ -129,6 +129,18 @@ const Calculator_2 = () => {
           result = Math.log10(current);
         }
         break;
+      case 'abs':
+        result = Math.abs(current);
+        break;
+      case 'exp':
+        result = Math.pow(Math.E, current);
+        break;
+      case 'floor':
+        result = Math.floor(current);
+        break;
+      case 'ceil':
+        result = Math.ceil(current);
+        break;
       default:
         return displayValue;
       }
@@ -251,7 +263,14 @@ const Calculator_2 = () => {
           <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('ln')}>ln(x)</Keyboard>
           <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('log2')}>log2(x)</Keyboard>
           <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('log10')}>log10(x)</Keyboard>
-            
+
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('abs')}>abs(x)</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('floor')}>floor(x)</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('ceil')}>ceil(x)</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('exp')}>exp(x)</Keyboard>
+ 
+
+
         </div>
       </div>
     </div>
