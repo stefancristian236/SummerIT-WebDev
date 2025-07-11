@@ -56,6 +56,33 @@ const Calculator_2 = () => {
       case 'x^3':
         result = Math.pow(current, 3);
         break;
+      case 'sin_x':
+        result = Math.sin(current);
+        break;
+      case 'cos_x':
+        result = Math.cos(current);
+        break;
+      case 'tan_x':
+        result = Math.tan(current);
+        break;
+      case 'sinh_x':
+        result = Math.sinh(current);
+        break;
+      case 'cosh_x':
+        result = Math.cosh(current);
+        break;
+      case 'tanh_x':
+        result = Math.tanh(current);
+        break;
+      case 'asin_x':
+        result = Math.asin(current);
+        break;
+      case 'acos_x':
+        result = Math.acos(current);
+        break;
+      case 'atan_x':
+        result = Math.atan(current);
+        break;
       default:
         return displayValue;
       }
@@ -111,55 +138,62 @@ const Calculator_2 = () => {
 
     return (
       <>
-        <div className="flex flex-col items-center justify-center min-h-screen bg-[#000000]">
-          <div className='bg-[#1a1a1a] rounded-lg shadow-lg h-[600px] w-[450px] p-6'>
-            <div>
-              <div className='bg-[#2a2a2a] text-white rounded-lg p-4 mb-4 h-[100px] flex items-center justify-end text-right text-3xl'>
-                <input className='allign-right w-full h-full bg-transparent outline-none text-right' type="text" value={displayValue} readOnly />
-              </div>
-              <div className='bg-[#2a2a2a] text-white rounded-lg p-4 h-[440px] flex items-center justify-center text-center text-xl'>
-                <div className='grid grid-cols-5 gap-2 flex items-center justify-center h-full w-full'>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('10x')}>10^x</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('2x')}>2^x</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('3x')}>3^x</Keyboard>
+<div className="flex flex-col items-center justify-center min-h-screen bg-[#000000]">
+  <div className='bg-[#1a1a1a] rounded-lg shadow-lg h-[600px] w-[450px] p-6'>
+    <div>
+      <div className='bg-[#2a2a2a] text-white rounded-lg p-4 mb-4 h-[100px] flex items-center justify-end text-right text-3xl'>
+        <input className='text-right w-full h-full bg-transparent outline-none' type="text" value={displayValue} readOnly />
+      </div>
+      <div className='bg-[#2a2a2a] text-white rounded-lg p-4 h-[440px] overflow-y-auto'>
+        <div className='grid grid-cols-5 gap-2 flex items-center justify-center h-full w-full text-sm'>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('10x')}>10^x</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('2x')}>2^x</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('3x')}>3^x</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={deleteLast}>C</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={clearDisplay}>CE</Keyboard>
 
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={deleteLast}>C</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={clearDisplay}>CE</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('1')}>1</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('2')}>2</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('3')}>3</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('4')}>4</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('5')}>5</Keyboard>
 
-                
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('1')}>1</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('2')}>2</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('3')}>3</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('4')}>4</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('5')}>5</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('6')}>6</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('7')}>7</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('8')}>8</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('9')}>9</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('0')}>0</Keyboard>
 
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('6')}>6</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('7')}>7</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('8')}>8</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('9')}>9</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('0')}>0</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('.')}>.</Keyboard>
 
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('.')}>.</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('+')}>+</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('-')}>-</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('*')}>*</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('/')}>/</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={equals}>=</Keyboard>
 
-              
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('+')}>+</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('-')}>-</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('*')}>*</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('/')}>/</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={equals}>=</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('^')}>x^y</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('sqrt')}>sqrt</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('sqrtn')}>sqrtn</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('mod')}>mod</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('x^2')}>x^2</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('x^3')}>x^3</Keyboard>
 
-               
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('^')}>x^y</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('sqrt')}>sqrt</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('sqrtn')}>sqrtn</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('mod')}>mod</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('x^2')}>x^2</Keyboard>
-                  <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => selectOperation('x^3')}>x^3</Keyboard>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('sin_x')}>sin(x)</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('cos_x')}>cos(x)</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('tan_x')}>tan(x)</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('sinh_x')}>sinh(x)</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('cosh_x')}>cosh(x)</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('tanh_x')}>tanh(x)</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('asin_x')}>arcsin(x)</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('acos_x')}>arccos(x)</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('atan_x')}>arctan(x)</Keyboard>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
       </>
     )
 }
