@@ -10,6 +10,8 @@ const Calculator_2 = () => {
     if (!operation || !prevValue) return displayValue;
     const current = parseFloat(displayValue);
     const previous = parseFloat(prevValue);
+    let e = 2.7;
+    let pi = 3.14;
 
     let result = 0;
     switch(operation) {
@@ -83,6 +85,50 @@ const Calculator_2 = () => {
       case 'atan_x':
         result = Math.atan(current);
         break;
+      case 'n!':
+        if (current === 0)
+          result = 1;
+        else {
+          if (Math.floor(current) === Math.ceil(current)){
+            result = 1;
+            for (let i = 1; i <= current; i++){
+              result = result * i; 
+            }
+          } else {
+            alert('Not integer');
+            return displayValue;
+            break;
+          } 
+        }
+        break;
+      case 'ln':
+        if (current <= 0) {
+          alert ('Undefined');
+          return displayValue;
+          break;
+        } else {
+          result = Math.log(current);
+        }
+        break;
+                break;
+      case 'log2':
+        if (current <= 0) {
+          alert ('Undefined');
+          return displayValue;
+          break;
+        } else {
+          result = Math.log2(current);
+        }
+        break;
+      case 'log10':
+        if (current <= 0) {
+          alert ('Undefined');
+          return displayValue;
+          break;
+        } else {
+          result = Math.log10(current);
+        }
+        break;
       default:
         return displayValue;
       }
@@ -128,24 +174,34 @@ const Calculator_2 = () => {
     const setDigit = (digit: string) => {
       if (displayValue[0] === '0' && digit === '0') return;
       if (displayValue.includes('.') && digit === '.') return;
+      if (digit === 'e') {
+        setDisplayValue(Math.E.toString());
+        setOverwrite(true);
+        return;
+      }
+      if (digit === 'pi') {
+        setDisplayValue(Math.PI.toString());
+        setOverwrite(true);
+        return;
+      }
       if (overwrite && digit) {
         setDisplayValue(digit);
       } else {
         setDisplayValue(`${displayValue}${digit}`);
-      }
+      } 
       setOverwrite(false);
     };
 
     return (
       <>
 <div className="flex flex-col items-center justify-center min-h-screen bg-[#000000]">
-  <div className='bg-[#1a1a1a] rounded-lg shadow-lg h-[600px] w-[450px] p-6'>
+  <div className='bg-[#1a1a1a] rounded-lg shadow-lg h-[800px] w-[650px] p-6'>
     <div>
-      <div className='bg-[#2a2a2a] text-white rounded-lg p-4 mb-4 h-[100px] flex items-center justify-end text-right text-3xl'>
+      <div className='bg-[#2a2a2a] text-white rounded-lg p-5 mb-5 h-[100px] flex items-center justify-end text-right text-3xl'>
         <input className='text-right w-full h-full bg-transparent outline-none' type="text" value={displayValue} readOnly />
       </div>
-      <div className='bg-[#2a2a2a] text-white rounded-lg p-4 h-[440px] overflow-y-auto'>
-        <div className='grid grid-cols-5 gap-2 flex items-center justify-center h-full w-full text-sm'>
+      <div className='bg-[#2a2a2a] text-white rounded-lg p-4 h-[640px] overflow-y-auto'>
+        <div className='grid grid-cols-8 gap-4 flex items-center justify-center h-full w-full text-sm'>
           <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('10x')}>10^x</Keyboard>
           <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('2x')}>2^x</Keyboard>
           <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('3x')}>3^x</Keyboard>
@@ -188,6 +244,14 @@ const Calculator_2 = () => {
           <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('asin_x')}>arcsin(x)</Keyboard>
           <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('acos_x')}>arccos(x)</Keyboard>
           <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('atan_x')}>arctan(x)</Keyboard>
+
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('n!')}>n!</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('e')}>e</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3' onClick={() => setDigit('pi')}>pi</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('ln')}>ln(x)</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('log2')}>log2(x)</Keyboard>
+          <Keyboard className='bg-[#4a4a4a] text-white rounded-lg p-3 whitespace-normal text-center' onClick={() => selectOperation('log10')}>log10(x)</Keyboard>
+            
         </div>
       </div>
     </div>
