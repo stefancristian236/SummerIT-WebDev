@@ -10,8 +10,6 @@ const Calculator_2 = () => {
     if (!operation || !prevValue) return displayValue;
     const current = parseFloat(displayValue);
     const previous = parseFloat(prevValue);
-    let e = 2.7;
-    let pi = 3.14;
 
     let result = 0;
     switch(operation) {
